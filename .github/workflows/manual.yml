@@ -1,0 +1,36 @@
+name: Manual workflow
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+#   push:
+#     branches: [ test ]
+#   pull_request:
+#     branches: [ test ]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Cloud Foundry Dev Environment Deployment'
+        default: 'Deploy'
+        required: true
+
+jobs:
+    deploy:
+      runs-on: ubuntu-latest
+#       needs: build
+#       environment:
+#         name: 'Development'
+#         url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+      steps:
+        - uses: elliottpope/cloudfoundry-cli-action@v6
+          with:
+            CF_API: https://api.cf.ap21.hana.ondemand.com
+            USERNAME: ${{ secrets.CF_USER }}
+            PASSWORD: ${{ secrets.CF_PASSWORD }}
+            ORG: ef77244etrial
+            SPACE: dev
+            COMMAND: push piotransbankstatementclient\
+                      --docker-image 201580070/bankstatementapp:version1.0.1\
+                      --docker-username 201580070\
+                      -t 60
