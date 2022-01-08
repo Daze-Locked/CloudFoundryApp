@@ -5,8 +5,6 @@ VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudFoundryApp.API", "CloudFoundryApp.API\CloudFoundryApp.API.csproj", "{FD731063-2F61-4D51-A6F8-650D6C53A9C2}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A4F82B9D-5AE4-453C-8EA5-A67F6FA89A57}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{FD731063-2F61-4D51-A6F8-650D6C53A9C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD731063-2F61-4D51-A6F8-650D6C53A9C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD731063-2F61-4D51-A6F8-650D6C53A9C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4F82B9D-5AE4-453C-8EA5-A67F6FA89A57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4F82B9D-5AE4-453C-8EA5-A67F6FA89A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4F82B9D-5AE4-453C-8EA5-A67F6FA89A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4F82B9D-5AE4-453C-8EA5-A67F6FA89A57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
