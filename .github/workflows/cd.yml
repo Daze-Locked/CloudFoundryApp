@@ -1,0 +1,38 @@
+name: Cloud Foundry Deployment
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+#   push:
+#     branches: [ development ]
+#   pull_request:
+#     branches: [ development ]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Cloud Foundry Dev Environment Deployment'
+        default: 'Deploy'
+        required: true
+
+jobs:
+    deploy:
+      runs-on: ubuntu-latest
+#       needs: build
+#       environment:
+#         name: 'Development'
+#         url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+      steps:
+      - name: Deploys to Cloud Foundry
+        uses: elliottpope/cloudfoundry-cli-action@v6
+        with:
+          CF_API: https://api.cf.ap21.hana.ondemand.com
+          USERNAME: ${{ secrets.CF_USER }}
+          PASSWORD: ${{ secrets.CF_PASSWORD }}
+          ORG: ef77244etrial
+          SPACE: dev
+          CF_DOCKER_PASSWORD: ${{ secrets.CF_DOCKER_PASSWORD }}
+          COMMAND: push cloudfoundryapp |
+                      --docker-image "croziernn/cloudfoundryapp:latest" |
+                      --docker-username "croziernn" |
+                      -t 60
