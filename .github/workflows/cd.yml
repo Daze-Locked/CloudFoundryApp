@@ -1,18 +1,18 @@
-name: Manual workflow
+name: Cloud Foundry Deployment
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-  push:
-    branches: [ development ]
+#   push:
+#     branches: [ development ]
 #   pull_request:
 #     branches: [ development ]
-#   workflow_dispatch:
-#     inputs:
-#       name:
-#         description: 'Cloud Foundry Dev Environment Deployment'
-#         default: 'Deploy'
-#         required: true
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Cloud Foundry Dev Environment Deployment'
+        default: 'Deploy'
+        required: true
 
 jobs:
     deploy:
@@ -32,10 +32,7 @@ jobs:
           ORG: ef77244etrial
           SPACE: dev
           CF_DOCKER_PASSWORD: ${{ secrets.CF_DOCKER_PASSWORD }}
-          COMMAND: push cloudfoundryapp|
-                      --docker-image croziernn/cloudfoundryapp:latest|
-                      --docker-username croziernn|
+          COMMAND: push cloudfoundryapp |
+                      --docker-image "croziernn/cloudfoundryapp:latest" |
+                      --docker-username "croziernn" |
                       -t 60
-                      
-      - name: Send greeting
-        run: echo "Hello ${{ github.event.inputs.name }}"
