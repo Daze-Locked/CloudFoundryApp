@@ -3,10 +3,10 @@ name: Manual workflow
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-#   push:
-#     branches: [ test ]
-#   pull_request:
-#     branches: [ test ]
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
   workflow_dispatch:
     inputs:
       name:
