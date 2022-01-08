@@ -1,41 +1,36 @@
-name: Manual workflow
+# This is a basic workflow to help you get started with Actions
 
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
+name: CI
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
 #   push:
-#     branches: [ development ]
+#     branches: [ main ]
 #   pull_request:
-#     branches: [ development ]
+#     branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    # Inputs the workflow accepts.
     inputs:
       name:
-        description: 'Cloud Foundry Dev Environment Deployment'
-        default: 'Deploy'
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Person to greet'
+        # Default value if no value is explicitly provided
+        default: 'World'
+        # Input has to be provided for the workflow to run
         required: true
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    deploy:
-      runs-on: ubuntu-latest
-#       needs: build
-#       environment:
-#         name: 'Development'
-#         url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  # This workflow contains a single job called "greet"
+  greet:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
-      steps:
-      - name: Deploys to Cloud Foundry
-        uses: elliottpope/cloudfoundry-cli-action@v6
-        with:
-          CF_API: https://api.cf.ap21.hana.ondemand.com
-          USERNAME: ${{ secrets.CF_USER }}
-          PASSWORD: ${{ secrets.CF_PASSWORD }}
-          ORG: ef77244etrial
-          SPACE: dev
-          CF_DOCKER_PASSWORD: ${{ secrets.CF_DOCKER_PASSWORD }}
-          COMMAND: push cloudfoundryapp|
-                      --docker-image croziernn/cloudfoundryapp:latest|
-                      --docker-username croziernn|
-                      -t 60
-                      
-      - name: Send greeting
-        run: echo "Hello ${{ github.event.inputs.name }}"
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: Send greeting
+      run: echo "Hello ${{ github.event.inputs.name }}"
