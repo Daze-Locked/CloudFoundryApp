@@ -3,10 +3,10 @@ name: Manual workflow
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-  push:
-    branches: [ development ]
-  pull_request:
-    branches: [ development ]
+#   push:
+#     branches: [ development ]
+#   pull_request:
+#     branches: [ development ]
   workflow_dispatch:
     inputs:
       name:
@@ -31,7 +31,7 @@ jobs:
           ORG: ef77244etrial
           SPACE: dev
           CF_DOCKER_PASSWORD: ${{ secrets.CF_DOCKER_PASSWORD }}
-          COMMAND: push cloudfoundryapp\
-                      --docker-image croziernn/cloudfoundryapp:latest\
-                      --docker-username croziernn\
+          COMMAND: push cloudfoundryapp|
+                      --docker-image croziernn/cloudfoundryapp:latest|
+                      --docker-username croziernn|
                       -t 60
