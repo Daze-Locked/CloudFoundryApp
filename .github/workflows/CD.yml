@@ -23,14 +23,15 @@ jobs:
 #         url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
       steps:
-        - uses: elliottpope/cloudfoundry-cli-action@v6
-          with:
-            CF_API: https://api.cf.ap21.hana.ondemand.com
-            USERNAME: ${{ secrets.CF_USER }}
-            PASSWORD: ${{ secrets.CF_PASSWORD }}
-            ORG: ef77244etrial
-            SPACE: dev
-            COMMAND: push piotransbankstatementclient\
-                      --docker-image 201580070/bankstatementapp:version1.0.1\
-                      --docker-username 201580070\
+      - uses: elliottpope/cloudfoundry-cli-action@v6
+        with:
+          CF_API: https://api.cf.ap21.hana.ondemand.com
+          USERNAME: ${{ secrets.CF_USER }}
+          PASSWORD: ${{ secrets.CF_PASSWORD }}
+          ORG: ef77244etrial
+          SPACE: dev
+          CF_DOCKER_PASSWORD: ${{ secrets.CF_DOCKER_PASSWORD }}
+          COMMAND: push cloudfoundryapp\
+                      --docker-image croziernn/cloudfoundryapp:latest\
+                      --docker-username croziernn\
                       -t 60
