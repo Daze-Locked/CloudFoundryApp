@@ -3,10 +3,11 @@ name: CD
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-#   push:
-#     branches: [ development ]
-#   pull_request:
-#     branches: [ development ]
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
+
   workflow_dispatch:
     inputs:
       name:
