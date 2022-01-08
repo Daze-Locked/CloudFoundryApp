@@ -23,7 +23,8 @@ jobs:
 #         url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
       steps:
-      - uses: elliottpope/cloudfoundry-cli-action@v6
+      - name: Deploys to Cloud Foundry
+        uses: elliottpope/cloudfoundry-cli-action@v6
         with:
           CF_API: https://api.cf.ap21.hana.ondemand.com
           USERNAME: ${{ secrets.CF_USER }}
@@ -35,3 +36,6 @@ jobs:
                       --docker-image croziernn/cloudfoundryapp:latest|
                       --docker-username croziernn|
                       -t 60
+                      
+      - name: Send greeting
+        run: echo "Hello ${{ github.event.inputs.name }}"
