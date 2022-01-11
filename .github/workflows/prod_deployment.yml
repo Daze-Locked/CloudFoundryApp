@@ -1,4 +1,4 @@
-name: Cloud Foundry Test CD
+name: Cloud Foundry Production CD
 
 on:
   push:
