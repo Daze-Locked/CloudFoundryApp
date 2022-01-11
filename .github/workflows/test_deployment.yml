@@ -2,9 +2,9 @@ name: Cloud Foundry Test CD
 
 on:
   push:
-    branches: [ development ]
+    branches: [ testing ]
   pull_request:
-    branches: [ development ]
+    branches: [ testing ]
 
   workflow_dispatch:
 
