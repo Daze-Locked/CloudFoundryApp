@@ -1,0 +1,25 @@
+name: Cloud Foundry Test CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  cf-deploy:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - uses: Daze-Locked/Daze-CFdry-CLI@main
+      with:
+        cf_api: https://api.cf.ap21.hana.ondemand.com
+        cf_username: ${{ secrets.CF_USERNAME }}
+        cf_password: ${{ secrets.CF_PASSWORD }}
+        cf_org: ef77244etrial
+        cf_space: test
+        docker_passwrd: ${{ secrets.CF_DOCKER_PASSWRD }}
+        command: push cloudfoundryapp-prod --docker-image croziernn/cloudfoundryapp:latest --docker-username croziernn -t 60
