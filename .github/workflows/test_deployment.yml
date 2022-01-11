@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  cf-deploy:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -22,4 +22,4 @@ jobs:
         cf_org: ef77244etrial
         cf_space: test
         docker_passwrd: ${{ secrets.CF_DOCKER_PASSWRD }}
-        command: push cloudfoundryapp --docker-image croziernn/cloudfoundryapp:latest --docker-username croziernn -t 60
+        command: push cloudfoundryapp-test --docker-image croziernn/cloudfoundryapp:latest --docker-username croziernn -t 60
