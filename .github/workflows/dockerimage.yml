@@ -17,9 +17,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Restore dependencies
+    - name: Restore .NET dependencies
       run: dotnet restore
-    - name: Build Application
+    - name: Build .NET Application
       run: dotnet build --no-restore
 #     - name: Test
 #       run: dotnet test --no-build --verbosity normal
@@ -33,3 +33,19 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: Daze-Locked/Daze-CFdry-CLI@main
+        name: Deploy to Cloud Foundry
+        with:
+          cf_api: https://api.cf.ap21.hana.ondemand.com
+          cf_username: ${{ secrets.CF_USERNAME }}
+          cf_password: ${{ secrets.CF_PASSWORD }}
+          cf_org: ef77244etrial
+          cf_space: dev
+          docker_passwrd: ${{ secrets.CF_DOCKER_PASSWRD }}
+          command: push cloudfoundryapp --docker-image croziernn/cloudfoundryapp:latest --docker-username croziernn -t 60
+      
