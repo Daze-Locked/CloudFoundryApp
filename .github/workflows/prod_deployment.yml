@@ -20,6 +20,6 @@ jobs:
         cf_username: ${{ secrets.CF_USERNAME }}
         cf_password: ${{ secrets.CF_PASSWORD }}
         cf_org: ef77244etrial
-        cf_space: test
+        cf_space: production
         docker_passwrd: ${{ secrets.CF_DOCKER_PASSWRD }}
         command: push cloudfoundryapp-prod --docker-image croziernn/cloudfoundryapp:latest --docker-username croziernn -t 60
